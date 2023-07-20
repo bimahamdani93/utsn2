@@ -17,8 +17,9 @@ return new class extends Migration
             $table->text('alamat')->nullable();
             $table->string('no_telepon')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->integer('total_harga');
+            $table->float('total_harga', 12, 4);
             $table->timestamp('tanggal_order')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->string('bukti_pembayaran')->nullable();
         });
     }
 

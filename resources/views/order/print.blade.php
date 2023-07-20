@@ -31,7 +31,7 @@
                     <div class="card-header">{{ __('Order Detail') }}</div>
 
                     @php
-                        $total_price = 0;
+                        $total_price = 0.0;
                     @endphp
 
                     <div class="card-body">

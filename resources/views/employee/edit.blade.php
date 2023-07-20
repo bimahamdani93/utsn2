@@ -35,6 +35,9 @@
                     <li class="nav-item">
                         <a href="{{ url('/transactions') }}" class="nav-item nav-link">List Transaksi</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/users') }}" class="nav-item nav-link">List User</a>
+                    </li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         class="nav-item nav-link">Logout</a>

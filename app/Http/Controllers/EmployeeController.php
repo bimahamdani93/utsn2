@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,7 @@ class EmployeeController extends Controller
     public function index()
     {
 
-        if (auth()->user()->role !== 'admin') {
+        if (!Auth::check() || auth()->user()->role !== 'admin') {
             return redirect()->route('welcome')->with('message', 'Anda bukan admin');
         }
         $pageTitle = 'Employee List';
@@ -36,6 +37,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('welcome')->with('message', 'Anda bukan admin');
+        }
         $pageTitle = 'Create Employee';
         // RAW SQL Query
         return view('employee.create', compact('pageTitle'));

@@ -36,22 +36,15 @@
                     <li class="nav-item">
                         <a href="{{ url('/transactions') }}" class="nav-item nav-link">List Transaksi</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/users') }}" class="nav-item nav-link">List User</a>
+                    </li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         class="nav-item nav-link">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    {{-- @guest
-                        <a href="{{ route('login') }}" class="nav text-dark">Login</a>
-                    @else
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            class="nav text-dark">Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    @endguest --}}
                 </ul>
             </div>
         </div>
@@ -103,8 +96,8 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input type="number" id="first-name" value="{{ old('harga', '') }}"
-                                                placeholder="Enter product price"
+                                            <input type="number" step="any" id="first-name"
+                                                value="{{ old('harga', '') }}" placeholder="Enter product price"
                                                 class="form-control @error('harga') is-invalid @enderror"
                                                 name="harga">
                                             @error('harga')

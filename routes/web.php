@@ -9,13 +9,13 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [LoginController::class, 'index']);
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/welcome', [HomeController::class, 'product'])->name('welcome');
+
 Route::get('/product', function () {
     return view('product');
 });
@@ -83,5 +83,7 @@ Route::get('/print-orders', [OrderController::class, 'print']);
 
 // Rute Transaction
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
+// Rute Users
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 

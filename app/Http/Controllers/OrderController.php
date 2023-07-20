@@ -9,10 +9,17 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller {
+    public function __construct() {
+        $this->middleware( 'auth' );
+    }
 
     public function index() {
+        if ( auth()->user()->role !== 'admin' ) {
+            return redirect()->route( 'welcome' )->with( 'message', 'Anda bukan admin' );
+        }
         $orders = Order::all();
 
         return view( 'order.index', compact( 'orders' ) );
@@ -66,6 +73,14 @@ class OrderController extends Controller {
         $order->nama = $request->nama;
         $order->alamat = $request->alamat;
         $order->no_telepon = $request->no_telepon;
+
+        if ( $request->hasFile( 'bukti_pembayaran' ) ) {
+            $file = $request->file( 'bukti_pembayaran' );
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move( 'uploads/bukti/', $filename );
+            $order->bukti_pembayaran = $filename;
+        }
 
         $order->update();
 

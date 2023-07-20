@@ -165,7 +165,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="{{ url('/welcome') }}" class="nav-item nav-link active">Home</a>
                 <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
                 <a href="{{ url('/service') }}" class="nav-item nav-link">Services</a>
                 <a href="{{ url('/products') }}" class="nav-item nav-link">Products</a>
@@ -173,20 +173,26 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="{{ url('/gallery') }}" class="dropdown-item">Gallery</a>
-                        <a href="{{ url('/features') }}" class="dropdown-item">Features</a>
+                        <a href="{{ url('/feature') }}" class="dropdown-item">Features</a>
                         <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a>
                         <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a>
                         <a href="{{ url('/404') }}" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
                 <a href="{{ route('employees.create') }}" class="nav-item nav-link">Contact</a>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="nav-item nav-link">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                <a href="/carts" class="nav-item nav-link"><i class="bi bi-cart"></i>Cart</a>
+                @guest
+                    <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
+                @else
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="nav-item nav-link">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
             </div>
+        </div>
     </nav>
     <!-- Navbar End -->
 
@@ -268,7 +274,7 @@
                             <p>Total: Rp{{ $total_harga }}</p>
                             <form action="{{ route('checkout') }}" method="post">
                                 {{ csrf_field() }}
-                                <a href="/show-products"><button class="btn btn-primary me-4"
+                                <a href="/products"><button class="btn btn-primary me-4"
                                         type="button">Back</button></a>
                                 <input type="hidden" value="{{ $total_harga }}" name="total_harga">
                                 <button type="submit" class="btn btn-success"

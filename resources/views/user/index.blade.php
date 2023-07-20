@@ -54,29 +54,16 @@
             <thead>
                 <tr>
                     <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>No Telp</th>
-                    <th>Total Harga</th>
-                    <th>Tanggal Order</th>
-                    <th>Username</th>
-                    <th>Bukti Pembayaran</th>
+                    <th>Email</th>
+                    <th>Role</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($orders as $order)
+                @foreach ($users as $user)
                     <tr>
-                        <td>{{ $order->nama }}</td>
-                        <td>{{ $order->alamat }}</td>
-                        <td>{{ $order->no_telepon }}</td>
-                        <td>{{ $order->total_harga }}</td>
-                        <td>{{ $order->tanggal_order }}</td>
-                        <td>{{ $order->user->name }}</td>
-                        <td>
-                            <img src="{{ asset('uploads/bukti/' . $order->bukti_pembayaran) }}" height="80px"
-                                width="80px" alt="">
-                            <a target="_blank" href="{{ url('uploads/bukti/' . $order->bukti_pembayaran) }} "
-                                class="btn btn-primary ml-3">Show</a>
-                        </td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->role }}</td>
                     </tr>
                 @endforeach
             </tbody>

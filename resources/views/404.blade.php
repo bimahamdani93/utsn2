@@ -73,21 +73,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="product.html" class="nav-item nav-link">Products</a>
+                <a href="{{ url('/welcome') }}" class="nav-item nav-link active">Home</a>
+                <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
+                <a href="{{ url('/service') }}" class="nav-item nav-link">Services</a>
+                <a href="{{ url('/products') }}" class="nav-item nav-link">Products</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="gallery.html" class="dropdown-item">Gallery</a>
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item active">404 Page</a>
+                        <a href="{{ url('/gallery') }}" class="dropdown-item">Gallery</a>
+                        <a href="{{ url('/feature') }}" class="dropdown-item">Features</a>
+                        <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a>
+                        <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a>
+                        <a href="{{ url('/404') }}" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('employees.create') }}" class="nav-item nav-link">Contact</a>
+                @guest
+                    <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
+                @else
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="nav-item nav-link">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
             </div>
             <div class="border-start ps-4 d-none d-lg-block">
                 <button type="button" class="btn btn-sm p-0"><i class="fa fa-search"></i></button>
@@ -122,7 +132,7 @@
                     <h1 class="display-1">404</h1>
                     <h1 class="mb-4">Page Not Found</h1>
                     <p class="mb-4">We’re sorry, the page you have looked for does not exist in our website! Maybe go to our home page or try to use a search?</p>
-                    <a class="btn btn-secondary rounded-pill py-3 px-5" href="">Go Back To Home</a>
+                    <a class="btn btn-secondary rounded-pill py-3 px-5" href="/welcome">Go Back To Home</a>
                 </div>
             </div>
         </div>

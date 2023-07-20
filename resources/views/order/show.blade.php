@@ -64,52 +64,15 @@
     </div>
     <!-- Topbar End -->
 
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
-        <a href="index.html" class="navbar-brand d-flex align-items-center">
-            <h1 class="m-0">Milky</h1>
-        </a>
-        <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
-                <a href="{{ url('/service') }}" class="nav-item nav-link">Services</a>
-                <a href="{{ url('/products') }}" class="nav-item nav-link">Products</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="{{ url('/gallery') }}" class="dropdown-item">Gallery</a>
-                        <a href="{{ url('/features') }}" class="dropdown-item">Features</a>
-                        <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a>
-                        <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a>
-                        <a href="{{ url('/404') }}" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="{{ route('employees.create') }}" class="nav-item nav-link">Contact</a>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="nav-item nav-link">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-    </nav>
-    <!-- Navbar End -->
-
-
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Buy Now</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Order Now</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="{{ url('/welcome') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/show-products') }}">Products</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Buy Now</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/products') }}">Orders</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Order Now</li>
                 </ol>
             </nav>
         </div>
@@ -127,7 +90,7 @@
                             <div class="card-header">{{ __('Order Detail') }}</div>
 
                             @php
-                                $total_price = 0;
+                                $total_price = 0.0;
                             @endphp
 
                             <div class="card-body">
@@ -147,19 +110,41 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    <div class="form-group mb-3">
+                                    <div class="form-group mb-3"
+                                        style="align-items: start; text-align: left; color: black; !important">
+                                        <label for="nama">Nama
+                                            <span class="required">*</span>
+                                        </label>
                                         <input class="form-control @error('nama') is-invalid @enderror "
                                             value="{{ old('nama') }}" id="nama" name="nama"
                                             type="text" placeholder="Masukkan nama Anda">
                                     </div>
-                                    <div class="form-group mb-3">
+                                    <div class="form-group mb-3"
+                                        style="align-items: start; text-align: left; color: black; !important">
+                                        <label for="alamat">Alamat
+                                            <span class="required">*</span>
+                                        </label>
                                         <textarea class="form-control" name="alamat" id="alamat" placeholder="Masukkan alamat" cols="30"
                                             rows="5">{{ old('alamat', '') }}</textarea>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-3"
+                                        style="align-items: start; text-align: left; color: black; !important">
+                                        <label for="no_telepon">Nomor Telepon
+                                            <span class="required">*</span>
+                                        </label>
                                         <input class="form-control @error('no_telepon') is-invalid @enderror "
                                             value="{{ old('no_telepon') }}" id="no_telepon" name="no_telepon"
                                             type="text" placeholder="Masukkan nomor telepon">
+                                    </div>
+                                    <div class="form-group mb-3"
+                                        style="align-items: start; text-align: left; color: black; !important">
+                                        <label for="bukti_pembayaran">Bukti Pembayaran
+                                            <span class="required">*</span>
+                                        </label>
+                                        <input class="form-control @error('bukti_pembayaran') is-invalid @enderror "
+                                            value="{{ old('bukti_pembayaran') }}" id="bukti_pembayaran"
+                                            name="bukti_pembayaran" type="file"
+                                            placeholder="Masukkan nomor telepon">
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-3">Submit Order</button>
                                 </form>

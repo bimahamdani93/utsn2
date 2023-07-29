@@ -80,6 +80,8 @@ Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.sh
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
 Route::get('/print-orders', [OrderController::class, 'print']);
+Route::get('/printpdf', [OrderController::class, 'cetakOrder'])->name('orders.print');
+
 
 // Rute Transaction
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');

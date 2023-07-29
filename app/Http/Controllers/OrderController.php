@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class OrderController extends Controller {
     public function __construct() {
@@ -91,5 +92,17 @@ class OrderController extends Controller {
         $orders = Order::where( 'user_id', auth()->user()->id )->latest( 'id' )->first();
         return view( 'order.print', compact( 'orders' ) );
     }
+
+    public function cetakOrder() {
+        $orders = Order::all();
+        if ( !$orders->isEmpty() ) {
+            $pdf = PDF::loadView( 'order.printPDF', compact( 'orders' ) );
+            return $pdf -> download( 'laporan_data_'.date( 'Y-m-d_H-i-s' ).'.pdf' );
+        } else {
+            Alert::warning( 'Gagal', 'Data Kosong' );
+            return back();
+        }
+    }
+
 
 }

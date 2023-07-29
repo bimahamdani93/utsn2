@@ -48,7 +48,13 @@
             </div>
         </div>
     </nav>
-
+    <div class="item form-group mt-4 px-4">
+        <div class="d-flex col-md-6 col-sm-6 w-100 justify-content-between">
+            <h3>List Order</h3>
+            <a href="{{ route('orders.print') }}" class="nav-item nav-link"> <button
+                    class="btn btn-success">Cetak</button></a>
+        </div>
+    </div>
     <div class="table-responsive border p-3 rounded-3">
         <table class="table table-bordered table-hover table-striped mb-0 bg-white">
             <thead>

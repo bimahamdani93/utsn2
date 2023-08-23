@@ -27,6 +27,9 @@
                         <a href="{{ url('/employees') }}" class="nav-item nav-link">Employee</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('/categories') }}" class="nav-item nav-link">Category</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('/products') }}" class="nav-item nav-link">Product</a>
                     </li>
                     <li class="nav-item">
@@ -48,44 +51,6 @@
             </div>
         </div>
     </nav>
-    {{-- <header class="header">
-
-        <a href="#" class="logo">
-            <img src="{{ Vite::asset('resources/images/AOlogo.png') }}" alt="">
-        </a>
-
-        <nav class="navbar">
-        <a href="{{url('/products')}}" class="nav-item nav-link">Products</a>
-            <a href="{{ route('about') }}">merch</a>
-            <a href="{{ route('employees.create') }}">contact</a>
-            <a href="{{ route('employees.index') }}">admin</a>
-            @guest
-                <a href="{{ route('login') }}" class="nav text-dark">Login</a>
-            @else
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="nav text-dark">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            @endguest
-        </nav>
-
-
-
-
-        <div class="icons">
-            <div class="fas fa-search" id="search-btn"></div>
-            <div class="fas fa-shopping-cart" id="cart-btn"></div>
-            <div class="fas fa-bars" id="menu-btn"></div>
-        </div>
-
-        <div class="search-form">
-            <input type="search" id="search-box" placeholder="search here...">
-            <label for="search-box" class="fas fa-search"></label>
-        </div>
-
-    </header> --}}
 
     <div class="table-responsive border p-3 rounded-3">
         <table class="table table-bordered table-hover table-striped mb-0 bg-white">

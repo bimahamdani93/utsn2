@@ -53,8 +53,8 @@
     </nav>
     <div class="item form-group mt-4 px-4">
         <div class="d-flex col-md-6 col-sm-6 w-100 justify-content-between">
-            <h3>List Product</h3>
-            <a href="{{ url('/products/create') }}" class="nav-item nav-link"> <button class="btn btn-success">Tambah
+            <h3>List Category</h3>
+            <a href="{{ url('/categories/create') }}" class="nav-item nav-link"> <button class="btn btn-success">Tambah
                     Produk</button></a>
         </div>
     </div>
@@ -62,31 +62,22 @@
         <table class="table table-bordered table-hover table-striped mb-0 bg-white">
             <thead>
                 <tr>
-                    <th>Nama Produk</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
-                    <th>Kategori</th>
-                    <th>Gambar</th>
+                    <th>Nama Kategori</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $product)
+                @foreach ($categories as $category)
                     <tr>
-                        <td>{{ $product->nama_barang }}</td>
-                        <td>{{ $product->harga }}</td>
-                        <td>{{ $product->stok }}</td>
-                        <td>{{ $product->category->nama_kategori }}</td>
-                        <td>
-                            <img src="{{ asset('uploads/products/' . $product->foto) }}" height="80px" width="80px"
-                                alt="">
-                        </td>
+                        <td>{{ $category->nama_kategori }}</td>
                         <td>
                             <div class="d-inline">
                                 <button class="btn btn-primary border-0 px-2">
-                                    <a href="/products/{{ $product['id'] }}/edit"><i class="fas fa-pencil-alt fa-lg"
-                                            aria-hidden="true" style="color:white !important;"></i></a></button>
-                                <form action="/products/{{ $product['id'] }}" method="post" class="d-inline">
+                                    <a href="{{ route('categories.edit', ['category' => $category->id]) }}"><i
+                                            class="fas fa-pencil-alt fa-lg" aria-hidden="true"
+                                            style="color:white !important;"></i></a></button>
+                                <form action="{{ route('categories.destroy', ['category' => $category->id]) }}"
+                                    method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger border-0"
@@ -95,12 +86,23 @@
                                             class="fas fa-trash-alt" aria-hidden="true"></i></button>
                                 </form>
                             </div>
+                            {{-- <a href="{{ route('employees.edit', ['employee' => $employee->id]) }}"
+                                class="btn btn-outline-dark btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <form action="{{ route('employees.destroy', ['employee' => $employee->id]) }}"
+                                method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-outline-dark btn-sm"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+
+
 
     @vite('resources/js/app.js')
 </body>

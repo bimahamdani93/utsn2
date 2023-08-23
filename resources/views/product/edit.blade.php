@@ -28,6 +28,9 @@
                         <a href="{{ url('/employees') }}" class="nav-item nav-link">Employee</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('/categories') }}" class="nav-item nav-link">Category</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('/products') }}" class="nav-item nav-link">Product</a>
                     </li>
                     <li class="nav-item">
@@ -121,6 +124,24 @@
                                                     {{ $message }}
                                                 </div>
                                             @enderror
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">Kategori
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <select class="form-control" name="category_id">
+                                                @foreach ($categories as $category)
+                                                    @if (old('category_id', $product->category_id) == $category->id)
+                                                        <option value="{{ $category->id }}" selected>{{ $category->nama_kategori }}
+                                                        </option>
+                                                    @else
+                                                        <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="item form-group">

@@ -134,26 +134,49 @@
                 <h1 class="mb-5">Our Dairy Products For Healthy Living</h1>
             </div>
             <div class="row gx-4">
-                @foreach ($products as $product)
-                    @if ($product->stok > 0)
-                        <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="product-item">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{ asset('uploads/products/' . $product->foto) }}"
-                                        alt="">
-                                    <div class="product-overlay">
-                                        <a class="btn btn-square btn-secondary rounded-circle m-1"
-                                            href="/products/{{ $product['id'] }}"><i class="bi bi-cart"></i></a>
+                @if (Auth::user()->category_id != 1)
+                    @foreach ($products as $product)
+                        @if ($product->stok > 0 && $product->category_id == Auth::user()->category_id)
+                            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="product-item">
+                                    <div class="position-relative">
+                                        <img class="img-fluid"
+                                            src="{{ asset('uploads/products/' . $product->foto) }}" alt="">
+                                        <div class="product-overlay">
+                                            <a class="btn btn-square btn-secondary rounded-circle m-1"
+                                                href="/products/{{ $product['id'] }}"><i class="bi bi-cart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="text-center p-4">
+                                        <a class="d-block h5" href="">{{ $product->nama_barang }}</a>
+                                        <span class="text-primary me-1">RP{{ $product->harga }}</span>
                                     </div>
                                 </div>
-                                <div class="text-center p-4">
-                                    <a class="d-block h5" href="">{{ $product->nama_barang }}</a>
-                                    <span class="text-primary me-1">RP{{ $product->harga }}</span>
+                            </div>
+                        @endif
+                    @endforeach
+                @else
+                    @foreach ($products as $product)
+                        @if ($product->stok > 0)
+                            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="product-item">
+                                    <div class="position-relative">
+                                        <img class="img-fluid"
+                                            src="{{ asset('uploads/products/' . $product->foto) }}" alt="">
+                                        <div class="product-overlay">
+                                            <a class="btn btn-square btn-secondary rounded-circle m-1"
+                                                href="/products/{{ $product['id'] }}"><i class="bi bi-cart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="text-center p-4">
+                                        <a class="d-block h5" href="">{{ $product->nama_barang }}</a>
+                                        <span class="text-primary me-1">RP{{ $product->harga }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

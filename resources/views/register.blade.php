@@ -15,14 +15,10 @@
 </head>
 
 <body>
-    <section class="h-100" >
+    <section class="h-100">
         <div class="container">
-            <div class="row justify-content-sm-center h-100">
+            <div class="row justify-content-sm-center mt-3">
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                    <div class="text-center my-5">
-                        <span class="navbar-text text-white"
-                            style=" font-family: 'Pacifico', cursive; font-size: 50px;">AO Cat Caffe</span>
-                    </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
@@ -38,15 +34,6 @@
                                         <div class="text-danger"><small>{{ $message }}</small></div>
                                     @enderror
                                 </div>
-                                {{-- <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="name">UserName</label>
-                                    <input id="username" type="text"
-                                        class="form-control @error('username') is-invalid @enderror" name="username"
-                                        value="{{ old('username') }}" required autofocus>
-                                    @error('username')
-                                        <div class="text-danger"><small>{{ $message }}</small></div>
-                                    @enderror
-                                </div> --}}
 
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail Address</label>
@@ -66,6 +53,17 @@
                                     @error('password')
                                         <div class="text-danger"><small>{{ $message }}</small></div>
                                     @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="mb-2 text-muted" for="category">Category</label>
+                                    <select class="form-control" data-width="100%" name="category_id" id="category_id"
+                                        required="">
+                                        <option value="">-- Choose Category --</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->nama_kategori }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <p class="form-text text-muted mb-3">

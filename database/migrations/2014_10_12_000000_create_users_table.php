@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->string('password');
+            $table->unsignedBigInteger('category_id')->default(1);
+            $table->foreign('category_id')->references('id')->on('categories')->constrained()->onUpdate('set default')->onDelete('set default');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

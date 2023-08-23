@@ -56,6 +56,7 @@
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th>Kategori</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +65,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
+                        <td>{{ $user->category->nama_kategori }}</td>
                     </tr>
                 @endforeach
             </tbody>

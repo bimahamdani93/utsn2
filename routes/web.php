@@ -1,16 +1,17 @@
 <?php
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransactionController;
 
 
 Route::get('/', [LoginController::class, 'index']);
@@ -66,6 +67,11 @@ Route::resources([
 // Rute Products
 Route::resources([
     'products' => ProductController::class,
+]);
+
+// Rute Categories
+Route::resources([
+    'categories' => CategoryController::class,
 ]);
 
 // Rute Cart

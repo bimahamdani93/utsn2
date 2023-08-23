@@ -27,6 +27,9 @@
                         <a href="{{ url('/employees') }}" class="nav-item nav-link">Employee</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('/categories') }}" class="nav-item nav-link">Category</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('/products') }}" class="nav-item nav-link">Product</a>
                     </li>
                     <li class="nav-item">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class ProductController extends Controller {
 
     public function index() {
         $products = Product::all();
+
         if ( Auth::user()->role == 'admin' ) {
             return view( 'product.index', compact( 'products' ) );
         } else {
@@ -41,7 +43,8 @@ class ProductController extends Controller {
     */
 
     public function create() {
-        return view( 'product.create' );
+        $categories = Category::all();
+        return view( 'product.create', compact( 'categories' ) );
     }
 
     /**
@@ -53,6 +56,7 @@ class ProductController extends Controller {
         $products->nama_barang = $request[ 'nama_barang' ];
         $products->harga = $request[ 'harga' ];
         $products->stok = $request[ 'stok' ];
+        $products->category_id = $request[ 'category_id' ];
 
         if ( $request->hasFile( 'foto' ) ) {
             $file = $request->file( 'foto' );
@@ -74,6 +78,7 @@ class ProductController extends Controller {
     public function edit( $id ) {
         return view( 'product.edit', [
             'product' => Product::find( $id ),
+            'categories' => Category::all(),
         ] );
     }
 
@@ -86,6 +91,7 @@ class ProductController extends Controller {
         $product->nama_barang = $request->nama_barang;
         $product->harga = $request->harga;
         $product->stok = $request->stok;
+        $product->category_id = $request->category_id;
 
         if ( $request->hasFile( 'foto' ) ) {
             $destination = 'uploads/products/'.$product->foto;
